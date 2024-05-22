@@ -35,11 +35,12 @@ func main() {
 		os.Exit(1)
 	}
 
+	buf := make([]byte, 9)
+
 	er := &errReader{r: f}
-	p := make([]byte, 9)
-	er.read(p[0:3]) // We do not
-	er.read(p[3:6]) // handle error
-	er.read(p[6:9]) // for each call.
+	er.read(buf[0:3]) // We do not
+	er.read(buf[3:6]) // handle error
+	er.read(buf[6:9]) // for each call.
 	if er.err != nil {
 		fmt.Fprintf(os.Stderr, "errgo: reading %s: %v\n", filename, er.err)
 		os.Exit(1)
