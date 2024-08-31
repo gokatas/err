@@ -14,8 +14,7 @@ type errReader struct {
 	err error
 }
 
-// read becomes a no-op as soon as an error
-// occurs but the error value gets saved
+// read becomes a no-op as soon as an error occurs
 func (er *errReader) read(buf []byte) {
 	if er.err != nil {
 		return
