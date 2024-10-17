@@ -14,8 +14,8 @@ type errReader struct {
 	err error
 }
 
-// read becomes a no-op as soon as an error occurs
 func (er *errReader) read(buf []byte) {
+	// read becomes a no-op as soon as an error occurs
 	if er.err != nil {
 		return
 	}
@@ -33,9 +33,9 @@ func main() {
 		fmt.Fprintf(os.Stderr, "errgo: %v\n", err)
 		os.Exit(1)
 	}
+	defer f.Close()
 
 	buf := make([]byte, 9)
-
 	er := &errReader{r: f}
 	er.read(buf[0:3]) // We do not
 	er.read(buf[3:6]) // handle error
